@@ -11,7 +11,7 @@ namespace TestSolution.Domain.Repositories
     {
         User GetById(Guid Id);
         IEnumerable<User> GetAll();
-        void Add (User user);
+        Guid Add(string name, string cpf, string number, DateTime birthDate, int age);
         void Update (User user);
         void Delete (Guid id);
     }

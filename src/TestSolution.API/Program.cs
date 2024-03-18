@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using TestSolution.Domain.Repositories;
 using TestSolution.Infra.Data;
+using TestSolution.Infra.Repositories;
+using TestSolution.Infra.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 var app = builder.Build();
 

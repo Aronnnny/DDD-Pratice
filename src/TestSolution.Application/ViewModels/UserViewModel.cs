@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestSolution.Domain.Entities;
+using TestSolution.Infra.DTOs;
 
-namespace TestSolution.Infra.DTOs
+namespace TestSolution.Application.ViewModels
 {
-    public class UserDTO
+    public class UserViewModel
     {
-        public Guid Id { get; set; } 
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
         public string Cpf { get; set; }
         public DateTime BirthDate { get; set; }
         public string Number { get; set; }
 
-        public UserDTO(User user)
+        public UserViewModel(UserDTO user)
         {
             Id = user.Id;
             Name = user.Name;
@@ -26,6 +26,6 @@ namespace TestSolution.Infra.DTOs
             Number = user.Number;
         }
 
-        public UserDTO() { }
+        public UserViewModel() { }
     }
 }

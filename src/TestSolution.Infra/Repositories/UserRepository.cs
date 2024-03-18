@@ -9,51 +9,43 @@ using TestSolution.Infra.Data;
 
 namespace TestSolution.Infra.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository(DataContext dataContext) : IUserRepository
     {
-        private readonly DataContext _context;
+        private readonly DataContext _dataContext = dataContext;
+        public Guid Add(string name, string cpf, string number, DateTime birthDate, int age)
+        {
+            var user = new User
+            {
+                Name = name,
+                Cpf = cpf,
+                Number = number,
+                BirthDate = birthDate,
+                Age = age
+            };
 
-        public UserRepository(DataContext context)
-        {
-            _context = context;
-        }
-        public void Add(User user)
-        {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            _dataContext.Users.Add(user);
+            _dataContext.SaveChanges();
+            return user.Id;
         }
 
         public void Delete(Guid id)
         {
-            var useToDelete =  _context.Users .FirstOrDefault(u => u.Id == id);
-            if (useToDelete != null) 
-            {
-                _context.Users.Remove(useToDelete);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
         }
 
         public IEnumerable<User> GetAll()
         {
-           return _context.Users.ToList();
+            return _dataContext.Users.ToList();
         }
 
         public User GetById(Guid Id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == Id);
+            return _dataContext.Users.FirstOrDefault(x => x.Id == Id);
         }
 
         public void Update(User user)
         {
-            var existingUser = _context.Users.FirstOrDefault(u => u.Id == user.Id);
-            if (existingUser != null)
-            {
-                existingUser.Name = user.Name;
-                existingUser.Age = user.Age;
-                existingUser.Cpf = user.Cpf;
-                existingUser.BirthDate = user.BirthDate;
-                existingUser.Number =  user.Number;
-            }
+            throw new NotImplementedException();
         }
     }
 }
