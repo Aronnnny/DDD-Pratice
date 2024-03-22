@@ -26,8 +26,7 @@ namespace TestSolution.Domain.Entities
 
         public void ValidateDomain(string description) 
         {
-            DomainExceptionValidation.ExceptionHandler(String.IsNullOrEmpty(description),
-                "Invalid Description. Description is required!");
+            DomainExceptionValidation.ExceptionHandler(String.IsNullOrEmpty(description), "Invalid Description. Description is required!");
         }
     }
 }
